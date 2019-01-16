@@ -4,7 +4,7 @@
     RootModule             = 'Sitecore.DockerImages.Management.psm1'
 
     # Version number of this module.
-    ModuleVersion          = '1.0.0.2'
+    ModuleVersion          = '1.0.0.0'
 
     # ID used to uniquely identify this module
     GUID                   = '9304670b-b5c6-4a02-b47e-cfb5c84b448e'
@@ -40,39 +40,51 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    RequiredModules = @(
+    RequiredModules        = @(
         @{
-            ModuleName = "Bendev.Assets.Management"; 
-            ModuleVersion = "1.0.0.3"; 
-            Guid = "03742115-6c2a-4f0a-8ef7-a9e31bcbad20"
-        }    
+            ModuleName    = "Bendev.Assets.Management";
+            ModuleVersion = "1.0.0.1";
+            Guid          = "03742115-6c2a-4f0a-8ef7-a9e31bcbad20"
+        }
     )
 
     # Assemblies that must be loaded prior to importing this module
-    RequiredAssemblies  =  @(
-               'System.IO.Compression', 
-               'System.IO.Compression.FileSystem'
+    RequiredAssemblies     = @(
+        'System.IO.Compression',
+        'System.IO.Compression.FileSystem'
     )
 
     # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-    #ScriptsToProcess = @()
+    # ScriptsToProcess       = @()
 
     # Type files (.ps1xml) to be loaded when importing this module
-    # TypesToProcess = @()
+    # TypesToProcess         = @()
 
     # Format files (.ps1xml) to be loaded when importing this module
-    # FormatsToProcess = @()
+    # FormatsToProcess       = @()
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-    # NestedModules          = @()
+    NestedModules          = @(
+        'Functions\Get-ImageBuildFolders.ps1',
+        'Functions\Invoke-SitecoreDockerImageBuild.ps1',
+        'Functions\Invoke-SitecoreDockerImageCheckSources.ps1',
+        'Functions\Invoke-SitecoreDockerImageProcessAssets.ps1',
+
+        'Private\Find-ExternalBaseImages.ps1',
+        'Private\Get-ClonedObject.ps1',
+        'Private\Get-TopologicalSort.ps1',
+        'Private\Invoke-EnsureDirectoryExists.ps1',
+        'Private\Sort-Images.ps1',
+        'Private\Sort-ObjectWithCustomList.ps1'
+    )
 
     # Functions to export from this module
     FunctionsToExport      = @(
-			'Get-ImageBuildFolders',
-			'Invoke-SitecoreDockerImageBuild',
-			'Invoke-SitecoreDockerImageCheckSources',
-            'Invoke-SitecoreDockerImageProcessAssets'
-	)
+        'Get-ImageBuildFolders',
+        'Invoke-SitecoreDockerImageBuild',
+        'Invoke-SitecoreDockerImageCheckSources',
+        'Invoke-SitecoreDockerImageProcessAssets'
+    )
 
     # Cmdlets to export from this module
     CmdletsToExport        = '*'
@@ -90,7 +102,7 @@
     # FileList = @()
 
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-    PrivateData = @{
+    PrivateData            = @{
 
         PSData = @{
 

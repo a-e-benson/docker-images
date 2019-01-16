@@ -1,10 +1,9 @@
-<#
-#Requires -RunAsAdministrator
+﻿#Requires -RunAsAdministrator
 
 # Get Functions
 #Write-Host $PSScriptRoot
 
-$private = Get-ChildItem -Path (Join-Path $PSScriptRoot 'Private') -Include *.ps1 -File -Recurse
+$private = Get-ChildItem -Path $PSScriptRoot -Include *.ps1 -Exclude 'Load.ps1' -File -Recurse
 
 # Dot source to scope
 # Private must be sourced first - usage in public functions during load
@@ -17,4 +16,5 @@ $private = Get-ChildItem -Path (Join-Path $PSScriptRoot 'Private') -Include *.ps
         Write-Warning $_.Exception.Message
     }
 }
-#>
+
+Import-Module –Name 'Bendev.Assets.Management' -Force -Verbose
